@@ -78,7 +78,15 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
+set_proxy(){
+    export http_proxy='http://127.0.0.1:7890'
+    export https_proxy='http://127.0.0.1:7890' 
+}
 
+unset_proxy(){
+    unset http_proxy
+    unset http_proxy
+}
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -88,7 +96,12 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # else
 #   export EDITOR='mvim'
 # fi
-
+#tty use English
+if [ 'tty | grep tty' ]; then
+    export LANG="en_US.UTF-8"
+else
+    export LANG="zh_CN.UTF-8"
+fi
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -99,7 +112,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 #
 # Example aliases
 alias vi='vim'
-alias -s zip='unzip -O GBK '
+alias  uzip='unzip -O GBK '
 alias ll='ls -al'
 alias tr='tar -xvf '
 alias clr='clear'
@@ -118,7 +131,25 @@ export LC_TELEPHONE="en_US.UTF-8"
 export LC_MEASUREMENT="en_US.UTF-8"
 export LC_IDENTIFICATION="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
-export http_proxy='http://127.0.0.1:7890'
-export https_proxy='http://127.0.0.1:7890'
-export DOTNET_ROOT=$HOME/.dotnet
-export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
+export XMODIFIERS="@im=fcitx5"
+export QT_IM_MODULE="fcitx5"
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+export TEXMFDIST=/usr/share/texmf-dist
+
+
+export CUDA_DIR=/opt/cuda
+export xla_gpu_cuda_data_dir=/opt/cuda/nvvm/libdevice
+export XLA_FLAGS=--xla_gpu_cuda_data_dir=/opt/cuda/nvvm/libdevice
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/cuda/extras/CUPTI/lib64
+
+# Add TeX Live to the PATH, MANPATH, INFOPATH
+export PATH=/usr/local/texlive/2024/bin/x86_64-linux:$PATH
+export MANPATH=/usr/local/texlive/2024/texmf-dist/doc/man:$MANPATH
+export INFOPATH=/usr/local/texlive/2024/texmf-dist/doc/info:$INFOPATH
+
+# Created by `pipx` on 2024-03-22 10:39:42
+export PATH="$PATH:/usr/local/texlive/2024"
+export PATH="$PATH:/home/Dregen_Yor/node_modules/lib/node_modules"
+PATH=~/.console-ninja/.bin:$PATH
+
